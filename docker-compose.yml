@@ -1,0 +1,16 @@
+version: '2'
+services:
+  shoppingcart-front:
+    tty: true
+    build: .
+    image: shoppingcart-pronto
+    command:
+    - bash
+    - -c
+    - /var/www/docker-entrypoint.sh
+    - port=8001
+    ports:
+    - 8001:4200/tcp
+    volumes:
+    - .:/var/www/
+    network_mode: bridge

@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit {
     const parent = this;
     const spinner = this.spinnerService;
     spinner.show();
-    axios.get( "http://127.0.0.1:8000/api/v1/products/")
+    axios.get( "http://0.0.0.0:8000/api/v1/products/")
       .then(function (response) {
         spinner.hide();
         parent.productList = [];
