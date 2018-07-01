@@ -1,0 +1,93 @@
+<br>
+<div class="container" *ngIf="localCartProducts.length > 0 && !completed">
+  <div class="row-fluid">
+    <form class="form-horizontal" [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <div id="legend">
+          <legend class="">Payment</legend>
+        </div>
+
+        <!-- Name -->
+        <div class="control-group">
+          <label class="control-label"  for="card_name">Card Holder's Name</label>
+          <div class="controls">
+            <input type="text" id="card_name" name="card_name" formControlName="card_name"
+                   placeholder="" class="input-xlarge">
+          </div>
+          <div *ngIf="submitted && cardForm.controls.card_name.errors" class="error">
+            <div *ngIf="cardForm.controls.card_name.errors.required">Card Holder's Name is required</div>
+          </div>
+        </div>
+
+        <!-- Card Number -->
+        <div class="control-group">
+          <label class="control-label" for="card_number">Card Number</label>
+          <div class="controls">
+            <input type="text" id="card_number" name="card_number" formControlName="card_number"
+                   placeholder="" class="input-xlarge">
+          </div>
+          <div *ngIf="submitted && cardForm.controls.card_number.errors" class="error">
+            <div *ngIf="cardForm.controls.card_number.errors.required">Card Number is required</div>
+          </div>
+        </div>
+
+        <!-- Expiry-->
+        <div class="control-group">
+          <label class="control-label" for="card_expiry_month">Card Expiry Date</label>
+          <div class="controls">
+            <select class="span3" name="card_expiry_month" id="card_expiry_month"
+                    formControlName="card_expiry_month">
+              <option></option>
+              <option value="01">Jan (01)</option>
+              <option value="02">Feb (02)</option>
+              <option value="03">Mar (03)</option>
+              <option value="04">Apr (04)</option>
+              <option value="05">May (05)</option>
+              <option value="06">June (06)</option>
+              <option value="07">July (07)</option>
+              <option value="08">Aug (08)</option>
+              <option value="09">Sep (09)</option>
+              <option value="10">Oct (10)</option>1
+              <option value="11">Nov (11)</option>
+              <option value="12">Dec (12)</option>
+            </select>
+            <select class="span2" name="card_expiry_year" formControlName="card_expiry_year">
+              <option value="18">2018</option>
+              <option value="19">2019</option>
+              <option value="20">2020</option>
+              <option value="21">2021</option>
+              <option value="22">2022</option>
+              <option value="23">2023</option>
+            </select>
+          </div>
+          <div *ngIf="submitted && cardForm.controls.card_expiry_month.errors" class="error">
+            <div *ngIf="cardForm.controls.card_expiry_month.errors.required">Card Expiry Month is required</div>
+          </div>
+          <div *ngIf="submitted && cardForm.controls.card_expiry_year.errors" class="error">
+            <div *ngIf="cardForm.controls.card_expiry_year.errors.required">Card Expiry Year is required</div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="control-group">
+          <div class="controls">
+            <button class="btn btn-success">Pay Now</button>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<div class="container" *ngIf="localCartProducts.length === 0">
+
+  <app-no-products-found [title]="messageTitle" [description]="messageDescription"></app-no-products-found>
+
+</div>
+
+<div class="container" *ngIf="completed">
+
+  <p>Your payment was accepted and the order will be available to be collected at the store!</p>
+
+</div>
